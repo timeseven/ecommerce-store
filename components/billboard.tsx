@@ -1,3 +1,5 @@
+"use client";
+
 import { BillboardProps } from "@/lib/interface";
 import Image from "next/image";
 import React from "react";
@@ -11,14 +13,26 @@ import "swiper/css/navigation";
 const Billboard: React.FC<BillboardProps> = ({ data }) => {
   return (
     <div className="p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden">
-      <Swiper navigation={true} modules={[Navigation]} className="w-full h-full">
-        {Array.isArray(data) &&
-          data.map((item) => (
+      {Array.isArray(data) ? (
+        <Swiper navigation={true} modules={[Navigation]}>
+          {data.map((item) => (
             <SwiperSlide key={item.id} className="flex items-center justify-center">
-              <img src={item.imageUrl} alt={item.imageUrl} className="object-cover w-full h-full" />
+              <img
+                src={item.imageUrl}
+                alt={item.imageUrl}
+                className="relative w-full object-cover aspect-[1.5/1] md:aspect-[2.5/1] overflow-hidden"
+              />
             </SwiperSlide>
           ))}
-      </Swiper>
+        </Swiper>
+      ) : (
+        <img
+          src={data.imageUrl}
+          alt={data.imageUrl}
+          className="relative w-full object-cover aspect-[1.5/1] md:aspect-[2.5/1] overflow-hidden"
+        />
+      )}
+
       {/* <div
         className="rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover"
         style={{ backgroundImage: `url(${data?.imageUrl})` }}

@@ -18,8 +18,8 @@ import categoryService from "@/services/categoryServices";
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params, searchParams }) => {
   const products = await productServices.getProducts({
     categoryId: params.categoryId,
-    colorId: searchParams.colorId,
-    sizeId: searchParams.sizeId,
+    // colorId: searchParams.colorId,
+    // sizeId: searchParams.sizeId,
   });
   const sizes = await sizeServices.getSizes();
   const colors = await colorServices.getColors();

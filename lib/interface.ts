@@ -11,13 +11,14 @@ export interface Billboard {
 }
 
 export interface BillboardProps {
-  data: Billboard;
+  data: Billboard | Billboard[];
 }
 
 export interface Category {
   id: string;
   name: string;
   billboard: Billboard;
+  children: Category[];
 }
 
 export interface CategoryPageProps {
@@ -118,4 +119,21 @@ export interface PreviewModalStore {
   data?: Product;
   onOpen: (data: Product) => void;
   onClose: () => void;
+}
+
+export interface CartStore {
+  items: Product[];
+  addItem: (data: Product) => void;
+  removeItem: (id: string) => void;
+  removeAll: () => void;
+}
+
+export interface CartItemProps {
+  data: Product;
+}
+
+export interface ModalProps {
+  open: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
 }

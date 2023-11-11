@@ -33,10 +33,10 @@ const MobileFilters: React.FC<MobileFilterProps> = ({ sizes, colors }) => {
               <IconButton icon={<X size={15} />} onClick={onClose} />
             </div>
             {/* Render the filters */}
-            <div className="p-4">
+            {/* <div className="p-4">
               <Filter valueKey="sizeId" name="Sizes" data={sizes} />
               <Filter valueKey="colorId" name="Colors" data={colors} />
-            </div>
+            </div> */}
           </Dialog.Panel>
         </div>
       </Dialog>

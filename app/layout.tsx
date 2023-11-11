@@ -3,6 +3,8 @@ import { Urbanist } from "next/font/google";
 
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import ModalProvider from "@/providers/modal-provider";
+import ToasterProvider from "@/providers/toast-provider";
 
 import "./globals.css";
 
@@ -17,8 +19,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={font.className}>
+        <ModalProvider />
+        <ToasterProvider />
         <Navbar />
-        {children}
+        <div className="pb-14">{children}</div>
         <Footer />
       </body>
     </html>

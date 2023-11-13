@@ -97,7 +97,7 @@ export interface Order {
 }
 
 export interface OrderItem {
-  product: Product[];
+  product: Product;
 }
 
 export interface IconButtonProps {

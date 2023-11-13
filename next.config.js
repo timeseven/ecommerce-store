@@ -4,7 +4,8 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://localhost:3000/api/:path*",
+        // destination: "http://localhost:3000/api/:path*",
+        destination: "https://ecommerce-admin-eosin-chi.vercel.app/api/:path*",
       },
     ];
   },

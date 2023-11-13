@@ -1,4 +1,4 @@
-import Image from "next/image";
+"use client";
 
 import Container from "@/components/ui/container";
 import Billboard from "@/components/billboard";

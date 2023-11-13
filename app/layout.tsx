@@ -11,8 +11,8 @@ import "./globals.css";
 const font = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Store",
-  description: "Store",
+  title: "Evenen Pets",
+  description: "Pet Store",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

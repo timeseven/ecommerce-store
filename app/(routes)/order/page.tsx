@@ -11,7 +11,6 @@ export const revalidate = 0;
 
 const Order = async () => {
   const orders = await orderServices.getOrders({ isPaid: true });
-  console.log(orders);
   return (
     <div className="bg-white">
       <Container>

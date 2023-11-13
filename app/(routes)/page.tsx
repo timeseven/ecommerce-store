@@ -9,8 +9,8 @@ import productServices from "@/services/productServices";
 
 const Home = async () => {
   const products = await productServices.getProducts({ isFeatured: true });
-  const billboards = await billboardServices.getBillboards();
-
+  const billboards = await billboardServices.getHomepageBillboards({ isFeatured: true });
+  console.log(billboards, "xxxx");
   return (
     <Container>
       <div className="space-y-10 pb-10">

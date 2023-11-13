@@ -36,6 +36,7 @@ export interface Product {
   category: Category;
   name: string;
   price: string;
+  description: string;
   isFeatured: boolean;
   size: Size;
   color: Color;

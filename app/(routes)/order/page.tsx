@@ -19,7 +19,7 @@ const Order = async () => {
         </h1>
         <div className="mt-5 ml-10">
           {orders.map((order) => (
-            <>
+            <div key={order.id}>
               <div className="flex items-center gap-x-4">
                 <h3 className="font-semibold text-black">Order Id:</h3>
                 <div>{order.id}</div>
@@ -41,12 +41,12 @@ const Order = async () => {
                 <div>{format(addDays(new Date(order.createdAt), 3), "MMM dd, yyyy")}</div>
               </div>
               <div className="flex items-center gap-x-4">
-                {order.orderItems.map((item) => (
-                  <OrderItemCard data={item.product} />
+                {order.orderItems.map((item, index) => (
+                  <OrderItemCard key={index} data={item.product} />
                 ))}
               </div>
               <hr className="my-2" />
-            </>
+            </div>
           ))}
         </div>
       </Container>

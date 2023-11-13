@@ -20,6 +20,7 @@ const Navbar = async () => {
             <Image src={logo} alt="log" className="w-32 aspect-[2/1]" />
           </Link>
           <MainNav data={mainCategories} />
+
           <NavbarActions />
         </div>
       </Container>

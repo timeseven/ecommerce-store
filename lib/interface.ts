@@ -82,6 +82,24 @@ export interface Query {
   isFeatured?: boolean;
 }
 
+export interface OrderQuery {
+  isPaid?: boolean;
+}
+
+export interface Order {
+  id: string;
+  phone: string;
+  address: string;
+  totalPrice: string;
+  createdAt: Date;
+  updatedAt: Date;
+  orderItems: OrderItem[];
+}
+
+export interface OrderItem {
+  product: Product[];
+}
+
 export interface IconButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   icon: React.ReactElement;

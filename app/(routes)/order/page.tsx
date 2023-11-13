@@ -7,6 +7,8 @@ import Container from "@/components/ui/container";
 import { Truck } from "lucide-react";
 import OrderItemCard from "@/components/order-item-card";
 
+export const revalidate = 0;
+
 const Order = async () => {
   const orders = await orderServices.getOrders({ isPaid: true });
   console.log(orders);

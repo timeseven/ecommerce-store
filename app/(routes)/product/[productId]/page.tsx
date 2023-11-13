@@ -8,6 +8,8 @@ import { ProductPageProps } from "@/lib/interface";
 
 import productServices from "@/services/productServices";
 
+export const revalidate = 0;
+
 const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
   const product = await productServices.getProduct(params.productId);
   const suggestedProducts = await productServices.getProducts({

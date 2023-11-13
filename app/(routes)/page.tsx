@@ -5,6 +5,8 @@ import ProductList from "@/components/product-list";
 import billboardServices from "@/services/billboardServices";
 import productServices from "@/services/productServices";
 
+export const revalidate = 0;
+
 const Home = async () => {
   const products = await productServices.getProducts({ isFeatured: true });
   const billboards = await billboardServices.getHomepageBillboards({ isFeatured: true });

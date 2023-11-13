@@ -15,6 +15,8 @@ import sizeServices from "@/services/sizeServices";
 import colorServices from "@/services/colorServices";
 import categoryService from "@/services/categoryServices";
 
+export const revalidate = 0;
+
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params, searchParams }) => {
   const products = await productServices.getProducts({
     categoryId: params.categoryId,

@@ -1,5 +1,3 @@
-"use client;";
-
 import React from "react";
 import { addDays, format } from "date-fns";
 import orderServices from "@/services/orderServices";

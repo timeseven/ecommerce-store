@@ -8,9 +8,11 @@ import { MainNavProps } from "@/lib/interface";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
+export const revalidate = 0;
+
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
-
+  console.log("mainnav", data);
   for (const items of data) {
     items.children.sort((a, b) => {
       const nameA = a.name.toUpperCase(); // ignore upper and lowercase

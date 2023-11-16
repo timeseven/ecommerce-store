@@ -48,7 +48,7 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
   };
   useEffect(() => {
     async function setData() {
-      if (!data) {
+      if (data.length === 0) {
         // client side
         const fetchData = await categoryService.getCategories();
         handleData(fetchData);

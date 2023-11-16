@@ -4,49 +4,62 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { usePathname } from "next/navigation";
 
-import { MainNavProps } from "@/lib/interface";
+import { Category, MainNavProps } from "@/lib/interface";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import categoryService from "@/services/categoryServices";
 
 export const revalidate = 0;
 
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const mainCategories = await categoryService.getCategories();
-  // Pass data to the page via props
-  return { props: { data: mainCategories } };
-}
-
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
-  // sort data
-  for (const items of data) {
-    items.children.sort((a, b) => {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
+  const [routes, setRoutes] = useState<any[]>([]);
+  // handleData
+  const handleData = (data: Category[]) => {
+    // sort data
+    for (const items of data) {
+      items.children.sort((a, b) => {
+        const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }
+
+    const tempData = data.map((route) => ({
+      id: route.id,
+      label: route.name,
+      active: pathname === `/category/${route.id}`,
+      children: route.children.map((item) => ({
+        id: item.id,
+        href: `/category/${item.id}`,
+        label: item.name,
+        active: pathname === `/category/${item.id}`,
+      })),
+    }));
+
+    setRoutes(tempData);
+  };
+  useEffect(() => {
+    async function setData() {
+      if (!data) {
+        // client side
+        const fetchData = await categoryService.getCategories();
+        handleData(fetchData);
+      } else {
+        // server side
+        handleData(data);
       }
-      if (nameA > nameB) {
-        return 1;
-      }
-      // names must be equal
-      return 0;
-    });
-  }
-  const routes = data.map((route) => ({
-    id: route.id,
-    label: route.name,
-    active: pathname === `/category/${route.id}`,
-    children: route.children.map((item) => ({
-      id: item.id,
-      href: `/category/${item.id}`,
-      label: item.name,
-      active: pathname === `/category/${item.id}`,
-    })),
-  }));
+    }
+    setData();
+  }, []);
+
   return (
     <>
       <nav className="mx-6 flex items-center space-x-4 lg:space-x-6">
@@ -72,7 +85,7 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
               leaveTo="transform opacity-0 scale-95"
             >
               <Menu.Items className="absolute right-0 mt-5 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-                {route.children.map((child) => (
+                {route.children.map((child: any) => (
                   <Menu.Item key={child.href}>
                     {({ active }) => (
                       <Link

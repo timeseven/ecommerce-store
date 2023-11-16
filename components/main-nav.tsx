@@ -12,20 +12,21 @@ export const revalidate = 0;
 
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
-  for (const items of data) {
-    items.children.sort((a, b) => {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      // names must be equal
-      return 0;
-    });
-  }
+  // sort data
+  // for (const items of data) {
+  //   items.children.sort((a, b) => {
+  //     const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  //     const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  //     if (nameA < nameB) {
+  //       return -1;
+  //     }
+  //     if (nameA > nameB) {
+  //       return 1;
+  //     }
+  //     // names must be equal
+  //     return 0;
+  //   });
+  // }
   const routes = data.map((route) => ({
     id: route.id,
     label: route.name,

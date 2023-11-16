@@ -12,7 +12,6 @@ export const revalidate = 0;
 
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
-  console.log("mainnav", data);
   for (const items of data) {
     items.children.sort((a, b) => {
       const nameA = a.name.toUpperCase(); // ignore upper and lowercase

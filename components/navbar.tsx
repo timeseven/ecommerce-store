@@ -11,6 +11,7 @@ import logo from "@/public/logo.jpg";
 
 const Navbar = async () => {
   const mainCategories = await categoryService.getCategories();
+  console.log("mainCategories", mainCategories);
   return (
     <div className="border-b">
       <Container>

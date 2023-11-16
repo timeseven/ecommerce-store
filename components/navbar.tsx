@@ -9,6 +9,8 @@ import NavbarActions from "@/components/navbar-action";
 import categoryService from "@/services/categoryServices";
 import logo from "@/public/logo.jpg";
 
+export const revalidate = 0;
+
 const Navbar = async () => {
   const mainCategories = await categoryService.getCategories();
   return (

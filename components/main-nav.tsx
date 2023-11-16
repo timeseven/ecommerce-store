@@ -7,26 +7,35 @@ import { usePathname } from "next/navigation";
 import { MainNavProps } from "@/lib/interface";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import categoryService from "@/services/categoryServices";
 
 export const revalidate = 0;
+
+// This gets called on every request
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const mainCategories = await categoryService.getCategories();
+  // Pass data to the page via props
+  return { props: { data: mainCategories } };
+}
 
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
   // sort data
-  // for (const items of data) {
-  //   items.children.sort((a, b) => {
-  //     const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-  //     const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-  //     if (nameA < nameB) {
-  //       return -1;
-  //     }
-  //     if (nameA > nameB) {
-  //       return 1;
-  //     }
-  //     // names must be equal
-  //     return 0;
-  //   });
-  // }
+  for (const items of data) {
+    items.children.sort((a, b) => {
+      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      // names must be equal
+      return 0;
+    });
+  }
   const routes = data.map((route) => ({
     id: route.id,
     label: route.name,
